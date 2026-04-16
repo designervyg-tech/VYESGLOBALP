@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>V Yes Global | Loans & Insurance</title>
-    <!-- Google Fonts: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (free icons) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>V Yes Global | Empowering Visions Across Borders</title>
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -16,449 +18,741 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #ffffff;
-            color: #1a2c3e;
+            font-family: 'Inter', sans-serif;
+            background: #fefefe;
+            color: #0f172a;
+            line-height: 1.5;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            cursor: none; /* Hide default cursor for custom smooth cursor */
         }
 
-        /* custom glowing cursor */
-        .glow-cursor {
-            width: 28px;
-            height: 28px;
-            background: rgba(76, 175, 80, 0.35);
+        /* Custom Cursor System */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: #0f3b6f;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: transform 0.08s linear, background 0.2s;
+            box-shadow: 0 0 8px rgba(10,88,202,0.4);
+        }
+        .cursor {
+            width: 42px;
+            height: 42px;
+            border: 2px solid rgba(10,88,202,0.4);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, background 0.2s;
+            transition: width 0.2s, height 0.2s, border-color 0.2s, background 0.2s, transform 0.1s;
+            backdrop-filter: blur(2px);
+        }
+        .cursor.active {
+            width: 70px;
+            height: 70px;
+            background: rgba(10, 88, 202, 0.08);
+            border-color: #0a58ca;
             backdrop-filter: blur(4px);
-            box-shadow: 0 0 18px rgba(76, 175, 80, 0.6);
-            will-change: transform;
+            transition: width 0.25s ease, height 0.25s ease;
+        }
+        a, button, .btn, .sector-card, .nav-link, .subscribe-input, .location, .footer-links a, .btn-sub {
+            cursor: none;
         }
 
-        /* floating elements animation */
-        @keyframes floatSoft {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
-        }
-        .floating-card {
-            animation: floatSoft 5s ease-in-out infinite;
+        /* Global Layout */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
         }
 
-        /* scroll reveal fade-up */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(35px);
-            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 0 24px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            flex-wrap: wrap;
         }
-        .fade-up.revealed {
-            opacity: 1;
-            transform: translateY(0);
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.9rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #0b1e33, #1f4a7a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-
-        /* global buttons, cards */
-        .btn-primary {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 40px;
-            font-weight: 600;
+        .logo i {
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            color: #0a58ca;
+            font-size: 2rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 42px;
+            font-weight: 500;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #1e293b;
+            transition: all 0.2s;
             font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 14px rgba(76, 175, 80, 0.25);
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: #0a58ca;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 70px 0 56px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            background: linear-gradient(145deg, #0c2a44, #1b4f7a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            max-width: 950px;
+            margin: 0 auto 24px;
+        }
+        .hero .subhead {
+            font-size: 1.35rem;
+            color: #334155;
+            max-width: 740px;
+            margin: 0 auto 36px;
+            font-weight: 400;
+        }
+        .btn-group {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            padding: 14px 34px;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1.5px solid transparent;
+            background: white;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.02);
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: #0a58ca;
+            color: white;
+            box-shadow: 0 12px 22px -10px rgba(10,88,202,0.4);
         }
         .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 22px rgba(76, 175, 80, 0.35);
-            background-color: #43a047;
+            background: #0847a8;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 24px 32px -12px rgba(10,88,202,0.5);
         }
         .btn-outline {
-            background: transparent;
-            border: 2px solid #4CAF50;
-            color: #1e3a2f;
-            padding: 10px 26px;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            border-color: #cbd5e1;
+            color: #0f172a;
         }
         .btn-outline:hover {
-            transform: scale(1.05);
-            background: rgba(76, 175, 80, 0.08);
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-            border-radius: 20px;
-        }
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.15);
+            border-color: #0a58ca;
+            background: #f8fafd;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -12px rgba(0,0,0,0.08);
         }
 
-        /* sticky header */
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.2s;
+        /* Sectors Cards */
+        .sectors {
+            padding: 70px 0 50px;
+        }
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+        }
+        .section-sub {
+            color: #475569;
+            margin-bottom: 52px;
+            font-size: 1.2rem;
+            max-width: 620px;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 34px;
+        }
+        .sector-card {
+            background: #ffffff;
+            padding: 36px 30px;
+            border-radius: 38px;
+            box-shadow: 0 20px 38px -12px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            border: 1px solid #eef2f8;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transform: translateY(0);
+            backdrop-filter: blur(0px);
+        }
+        .sector-card:hover {
+            transform: translateY(-14px);
+            box-shadow: 0 36px 48px -16px rgba(10,88,202,0.2);
+            border-color: #cde1f2;
+            background: #ffffff;
+        }
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 28px;
+            color: #0a58ca;
+        }
+        .sector-card h3 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .sector-card p {
+            color: #3b4e62;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+        .learn-more {
+            font-weight: 700;
+            color: #0a58ca;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: gap 0.3s;
+            font-size: 1rem;
+        }
+        .sector-card:hover .learn-more {
+            gap: 16px;
         }
 
-        /* gradient stats bar */
-        .gradient-stats {
-            background: linear-gradient(105deg, #4CAF50 0%, #2b7a3e 35%, #1e88e5 100%);
-            border-radius: 28px;
+        /* Global Reach Section */
+        .reach {
+            background: linear-gradient(115deg, #f1f8fe 0%, #ffffff 100%);
+            border-radius: 52px;
+            padding: 64px 56px;
+            margin: 40px 0 50px;
+            border: 1px solid #e2edf7;
+        }
+        .reach h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+        .reach-desc {
+            font-size: 1.3rem;
+            color: #0a58ca;
+            font-weight: 500;
+            margin-bottom: 28px;
+        }
+        .reach-info p {
+            font-size: 1.12rem;
+            color: #2c3f55;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+        .hq-locations {
+            display: flex;
+            gap: 56px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+        .location {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: transform 0.2s;
+        }
+        .location:hover {
+            transform: translateX(5px);
+        }
+        .location i {
+            font-size: 1.7rem;
+            color: #0a58ca;
+            margin-top: 4px;
+        }
+        .address {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        .address small {
+            display: block;
+            color: #5a6f86;
+            font-weight: 400;
+            margin-top: 6px;
         }
 
-        /* slider styling */
-        input[type="range"] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 6px;
-            background: #e0e7e9;
-            border-radius: 10px;
+        /* Newsletter */
+        .newsletter {
+            padding: 56px 0 70px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .newsletter h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+        .newsletter p {
+            color: #2c4c74;
+            font-size: 1.1rem;
+        }
+        .subscribe-form {
+            display: flex;
+            max-width: 560px;
+            margin: 36px auto 0;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .subscribe-input {
+            flex: 1;
+            min-width: 240px;
+            padding: 18px 24px;
+            border: 2px solid #dce5ef;
+            border-radius: 80px;
+            font-size: 1rem;
             outline: none;
+            transition: all 0.25s;
+            background: white;
+            font-weight: 500;
         }
-        input[type="range"]:focus {
-            outline: none;
+        .subscribe-input:focus {
+            border-color: #0a58ca;
+            box-shadow: 0 0 0 5px rgba(10,88,202,0.15);
         }
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            background: #4CAF50;
-            border-radius: 50%;
+        .btn-sub {
+            background: #0b1e33;
+            color: white;
+            border: none;
+            padding: 0 38px;
+            border-radius: 80px;
+            font-weight: 600;
+            transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+        }
+        .btn-sub:hover {
+            background: #0a58ca;
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px -6px rgba(10,88,202,0.4);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 56px 0 40px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.6fr;
+            gap: 48px;
+        }
+        .footer-logo {
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0c2e4a;
+        }
+        .company-desc {
+            color: #4a627a;
+            margin-bottom: 24px;
+            line-height: 1.45;
+        }
+        .footer-links h4 {
+            margin-bottom: 24px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+        .footer-links ul {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 14px;
+        }
+        .footer-links a {
+            text-decoration: none;
+            color: #3a546d;
+            transition: color 0.2s, transform 0.1s;
+            display: inline-block;
+        }
+        .footer-links a:hover {
+            color: #0a58ca;
+            transform: translateX(3px);
+        }
+        .address-footer p {
+            margin-bottom: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #36526b;
+        }
+        .address-footer i {
+            width: 22px;
+            color: #0a58ca;
+            margin-top: 3px;
+        }
+        hr {
+            margin: 48px 0 28px;
+            border: 0;
+            height: 1px;
+            background: #dee6ef;
+        }
+        .bottom-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #5e7a95;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .bottom-footer span i {
+            margin-left: 18px;
+            font-size: 1.2rem;
+            transition: color 0.2s;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            border: 2px solid white;
         }
-        .calc-card {
-            background: #0f2a2f;
-            background: linear-gradient(135deg, #0b2b2b 0%, #0a1f24 100%);
-            border-radius: 32px;
-            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.35);
+        .bottom-footer span i:hover {
+            color: #0a58ca;
         }
 
-        /* image placeholder */
-        .hero-img {
-            background: #eef2f5;
-            border-radius: 32px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            animation: fadeUp 0.85s cubic-bezier(0.2, 0.9, 0.3, 1.1) forwards;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.35s; }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-            }
-            .stats-grid {
-                flex-wrap: wrap;
-                gap: 1.2rem;
-            }
-            .hero-flex {
-                flex-direction: column;
-            }
+        /* responsive refinements */
+        @media (max-width: 1000px) {
+            .card-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+            .hero h1 { font-size: 3.4rem; }
+        }
+        @media (max-width: 720px) {
+            .card-grid { grid-template-columns: 1fr; }
+            .navbar { flex-direction: column; gap: 20px; }
+            .nav-links { gap: 28px; flex-wrap: wrap; justify-content: center; }
+            .hero h1 { font-size: 2.5rem; }
+            .reach { padding: 36px 24px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 24px; }
+            .btn-group .btn { padding: 12px 24px; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.2rem; }
+            .section-title { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Custom glowing cursor -->
-    <div class="glow-cursor" id="glowCursor"></div>
+    <!-- Custom cursor elements -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
 
-    <!-- Sticky Header -->
-    <header class="sticky-header" style="padding: 1rem 0;">
-        <div class="container" style="max-width: 1280px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <div class="logo" style="font-size: 1.8rem; font-weight: 800; color: #1c3b2f;">
-                <span style="color: #4CAF50;">V</span> Yes Global
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar fade-up">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i> 
+                <span>V Yes Global</span>
             </div>
-            <nav style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
-                <a href="#" style="text-decoration: none; font-weight: 500; color: #2c3e3f;">Home</a>
-                <a href="#" style="text-decoration: none; font-weight: 500; color: #2c3e3f;">Loans & Insurance</a>
-                <a href="#" style="text-decoration: none; font-weight: 500; color: #2c3e3f;">About Us</a>
-                <a href="#" style="text-decoration: none; font-weight: 500; color: #2c3e3f;">Contact</a>
-                <button class="btn-primary" style="padding: 8px 22px;">Contact Now</button>
-            </nav>
-        </div>
-    </header>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Loans & Finance</a>
+                <a href="#" class="nav-link">Digital</a>
+                <a href="#" class="nav-link">Furniture</a>
+                <a href="#" class="nav-link">Insights</a>
+                <a href="#" class="nav-link">Contact</a>
+            </div>
+        </nav>
 
-    <main>
         <!-- Hero Section -->
-        <section class="container" style="max-width: 1280px; margin: 3rem auto 2rem; padding: 0 2rem;">
-            <div class="hero-flex" style="display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;">
-                <div class="fade-up" style="flex: 1.2;">
-                    <h1 style="font-size: 3.4rem; font-weight: 800; line-height: 1.2; letter-spacing: -0.02em;">Secure Your Future with Confidence</h1>
-                    <p style="margin: 1.5rem 0 2rem; font-size: 1.1rem; color: #4a5b66; max-width: 90%;">Tailored loans and comprehensive insurance plans designed for every stage of your life’s journey. Explore competitive rates today.</p>
-                    <div style="display: flex; gap: 1.2rem; flex-wrap: wrap;">
-                        <button class="btn-primary"><i class="fas fa-calendar-check"></i> Book Free Consultation</button>
-                        <button class="btn-outline"><i class="fas fa-play-circle"></i> How It Works</button>
-                    </div>
-                </div>
-                <div class="fade-up" style="flex: 1; position: relative;">
-                    <div class="hero-img" style="background: linear-gradient(145deg, #eef5f0, #e0eae3); padding: 1.5rem; border-radius: 36px;">
-                        <img src="https://placehold.co/600x450/eef2f5/2c5f3a?text=Couple+Reviewing+Documents" alt="couple reviewing financial documents" style="width:100%; border-radius: 28px; display: block; object-fit: cover;">
-                    </div>
-                    <!-- Floating card -->
-                    <div class="floating-card" style="position: absolute; bottom: -20px; left: -20px; background: white; padding: 0.9rem 1.4rem; border-radius: 28px; box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 12px; backdrop-filter: blur(2px);">
-                        <i class="fas fa-check-circle" style="color: #4CAF50; font-size: 2rem;"></i>
-                        <div><strong style="font-size: 1.25rem;">Loan Approved $450,000</strong><br><span style="font-size: 0.8rem;">Instant decision</span></div>
+        <header class="hero fade-up delay-1">
+            <h1>Empowering Global Visions</h1>
+            <p class="subhead">Pioneering finance, digital ecosystems, and premium manufacturing. We transform ambition into international success.</p>
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary" id="strategicBtn"><i class="fas fa-globe-asia"></i> Strategic Footprint</a>
+                <a href="#" class="btn btn-outline" id="exploreBtn"><i class="fas fa-rocket"></i> Discover Innovation</a>
+            </div>
+        </header>
+
+        <!-- Strategic Sectors -->
+        <section class="sectors fade-up delay-2">
+            <h2 class="section-title">Our Strategic Sectors</h2>
+            <p class="section-sub">Driving the global economy through diversified excellence and forward-thinking solutions.</p>
+            <div class="card-grid">
+                <a href="#" class="sector-card" data-sector="finance">
+                    <div class="card-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                    <h3>Loans & Insurance</h3>
+                    <p>Tailored corporate financing, risk management, and wealth protection solutions for sustainable growth.</p>
+                    <span class="learn-more">Discover solutions <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="#" class="sector-card" data-sector="digital">
+                    <div class="card-icon"><i class="fas fa-digital-tiling"></i></div>
+                    <h3>Branding & Digital</h3>
+                    <p>Data-driven brand elevation, immersive digital experiences, and global marketing strategies.</p>
+                    <span class="learn-more">Explore digital edge <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="#" class="sector-card" data-sector="furniture">
+                    <div class="card-icon"><i class="fas fa-chair"></i></div>
+                    <h3>Furniture & Products</h3>
+                    <p>Ergonomic design meets sustainable craftsmanship — manufacturing premium furniture for modern spaces.</p>
+                    <span class="learn-more">View collection <i class="fas fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Global Reach / Elevated presence -->
+        <section class="reach fade-up delay-3">
+            <h2>🌍 Worldwide Nexus</h2>
+            <p class="reach-desc">Strategic presence across emerging & established markets</p>
+            <div class="reach-grid">
+                <div class="reach-info">
+                    <p>With operational excellence spanning three continents, V Yes Global delivers localized expertise and global scale. Our integrated hubs empower partners to thrive in complex economies.</p>
+                    <div class="hq-locations">
+                        <div class="location">
+                            <i class="fas fa-city"></i>
+                            <div class="address">
+                                Global Headquarters<br>
+                                <small>Kammagondananalli, Bangalore - 560015, India</small>
+                            </div>
+                        </div>
+                        <div class="location">
+                            <i class="fas fa-chart-simple"></i>
+                            <div class="address">
+                                Innovation Hub<br>
+                                <small>Jalahalli, Bangalore (KA) · Digital Center of Excellence</small>
+                            </div>
+                        </div>
+                        <div class="location">
+                            <i class="fas fa-handshake"></i>
+                            <div class="address">
+                                Asia-Pacific Desk<br>
+                                <small>Singapore · Malaysia Corridor</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Stats Bar (gradient) -->
-        <section class="container" style="max-width: 1280px; margin: 3rem auto; padding: 0 2rem;">
-            <div class="gradient-stats" style="display: flex; justify-content: space-between; align-items: center; text-align: center; padding: 2rem 2.5rem; flex-wrap: wrap; gap: 1.5rem; color: white;">
-                <div style="flex:1;"><h3 style="font-size: 2rem; font-weight: 800;">98%</h3><p style="font-weight: 500;">Approval Rate</p></div>
-                <div style="flex:1;"><h3 style="font-size: 2rem; font-weight: 800;">24h</h3><p style="font-weight: 500;">Processing Time</p></div>
-                <div style="flex:1;"><h3 style="font-size: 2rem; font-weight: 800;">10k+</h3><p style="font-weight: 500;">Happy Clients</p></div>
-                <div style="flex:1;"><h3 style="font-size: 2rem; font-weight: 800;">4.9</h3><p style="font-weight: 500;">TrustPilot Score</p></div>
+        <!-- Newsletter Subscription -->
+        <section class="newsletter">
+            <h3>Amplify Your Vision</h3>
+            <p>Subscribe to receive quarterly strategic intelligence and market outlooks.</p>
+            <div class="subscribe-form">
+                <input type="email" placeholder="Your business email" class="subscribe-input" id="newsEmail">
+                <button class="btn btn-sub" id="subscribeBtn"><i class="fas fa-envelope-open-text"></i> Subscribe</button>
             </div>
         </section>
+    </div>
 
-        <!-- Services Section: 4 Cards -->
-        <section class="container" style="max-width: 1280px; margin: 4rem auto; padding: 0 2rem;">
-            <div class="fade-up" style="text-align: center; margin-bottom: 3rem;">
-                <h2 style="font-size: 2.4rem; font-weight: 700;">Comprehensive Financial Solutions</h2>
-                <p style="color: #5a6e7a; margin-top: 0.5rem;">Whether you’re buying a home or insuring your business, we have the right plan for you.</p>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-                <!-- card 1 -->
-                <div class="card-hover fade-up" style="background: white; border-radius: 24px; padding: 1.8rem; box-shadow: 0 12px 26px -8px rgba(0,0,0,0.08); transition: all 0.3s;">
-                    <i class="fas fa-user-graduate" style="font-size: 2.5rem; color: #4CAF50; margin-bottom: 1rem;"></i>
-                    <h3 style="font-size: 1.5rem; margin: 0.5rem 0;">Personal Loans</h3>
-                    <p style="color: #5e7a7a;">Quick approval rates for travel, weddings, or debt consolidation.</p>
-                    <a href="#" style="display: inline-block; margin-top: 1rem; color: #4CAF50; font-weight: 600; text-decoration: none;">Learn More →</a>
-                </div>
-                <!-- card 2 -->
-                <div class="card-hover fade-up" style="background: white; border-radius: 24px; padding: 1.8rem; box-shadow: 0 12px 26px -8px rgba(0,0,0,0.08);">
-                    <i class="fas fa-home" style="font-size: 2.5rem; color: #4CAF50; margin-bottom: 1rem;"></i>
-                    <h3 style="font-size: 1.5rem;">Home Loans</h3>
-                    <p>Competitive interest rates for your dream home. Flexible repayment options.</p>
-                    <a href="#" style="display: inline-block; margin-top: 1rem; color: #4CAF50; font-weight: 600; text-decoration: none;">Check Rates →</a>
-                </div>
-                <!-- card 3 -->
-                <div class="card-hover fade-up" style="background: white; border-radius: 24px; padding: 1.8rem; box-shadow: 0 12px 26px -8px rgba(0,0,0,0.08);">
-                    <i class="fas fa-briefcase" style="font-size: 2.5rem; color: #4CAF50; margin-bottom: 1rem;"></i>
-                    <h3>Business Insurance</h3>
-                    <p>Protect your assets and employees. Comprehensive coverage for SMEs.</p>
-                    <a href="#" style="display: inline-block; margin-top: 1rem; color: #4CAF50; font-weight: 600; text-decoration: none;">Get Protected →</a>
-                </div>
-                <!-- card 4 -->
-                <div class="card-hover fade-up" style="background: white; border-radius: 24px; padding: 1.8rem; box-shadow: 0 12px 26px -8px rgba(0,0,0,0.08);">
-                    <i class="fas fa-heartbeat" style="font-size: 2.5rem; color: #4CAF50; margin-bottom: 1rem;"></i>
-                    <h3>Life Insurance</h3>
-                    <p>Peace of mind for your family’s future. Term life and whole life policies.</p>
-                    <a href="#" style="display: inline-block; margin-top: 1rem; color: #4CAF50; font-weight: 600; text-decoration: none;">View Plans →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Loan Calculator Section (Dark Card UI) -->
-        <section class="container" style="max-width: 1280px; margin: 2rem auto 4rem; padding: 0 2rem;">
-            <div class="calc-card fade-up" style="padding: 2rem 2rem; display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; color: #f0f6f2;">
-                <div style="flex: 1.2;">
-                    <h2 style="font-size: 1.9rem; font-weight: 700; color: white;">Loan Calculator</h2>
-                    <p style="margin-bottom: 1.8rem; opacity: 0.8;">Estimate your monthly repayments quickly.</p>
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: flex; justify-content: space-between;"><span>Loan Amount: $<span id="amountVal">50000</span></span></label>
-                        <input type="range" id="loanAmount" min="5000" max="500000" step="1000" value="50000" style="width:100%; margin: 0.8rem 0;">
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <i class="fas fa-globe-americas"></i> V Yes Global
                     </div>
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: flex; justify-content: space-between;"><span>Loan Term (Months): <span id="termVal">24</span> months</span></label>
-                        <input type="range" id="loanTerm" min="6" max="360" step="1" value="24" style="width:100%; margin: 0.8rem 0;">
-                    </div>
-                    <div style="margin-bottom: 1.8rem;">
-                        <label style="display: flex; justify-content: space-between;"><span>Interest Rate: <span id="rateVal">12</span>%</span></label>
-                        <input type="range" id="interestRate" min="1" max="25" step="0.5" value="12" style="width:100%; margin: 0.8rem 0;">
-                    </div>
-                    <button class="btn-primary" id="calcBtn" style="background: #2e7d32;">Calculate & Apply</button>
+                    <p class="company-desc">A diversified global holding company committed to sustainable innovation, financial empowerment, and design excellence across borders.</p>
                 </div>
-                <div style="flex: 0.8; background: rgba(255,255,255,0.07); border-radius: 28px; padding: 1.8rem; text-align: center;">
-                    <p style="font-size: 1rem; letter-spacing: 1px;">MONTHLY PAYMENT</p>
-                    <h2 style="font-size: 3rem; font-weight: 800; color: #c8f0c1;" id="monthlyPayment">$1,647.08</h2>
-                    <p style="margin-top: 1rem;">Total interest: <span id="totalInterest">$</span> | Total payment: <span id="totalPayment">$</span></p>
+                <div class="footer-links">
+                    <h4>ECOSYSTEM</h4>
+                    <ul>
+                        <li><a href="#">Loans & Capital</a></li>
+                        <li><a href="#">Digital Marketing</a></li>
+                        <li><a href="#">Furniture Manufacturing</a></li>
+                        <li><a href="#">Corporate Advisory</a></li>
+                    </ul>
                 </div>
-            </div>
-        </section>
-
-        <!-- Why Choose Us: handshake left + bullets right -->
-        <section class="container" style="max-width: 1280px; margin: 4rem auto; padding: 0 2rem;">
-            <div style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: center;">
-                <div class="fade-up" style="flex: 1; border-radius: 32px; overflow: hidden; box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);">
-                    <img src="https://placehold.co/600x500/eef5f0/2c6e3c?text=Handshake+Trust" alt="handshake" style="width:100%; height: auto; display: block;">
+                <div class="footer-links">
+                    <h4>CONNECT</h4>
+                    <ul>
+                        <li><a href="#">About V Yes</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press Room</a></li>
+                        <li><a href="#">Privacy & Legal</a></li>
+                    </ul>
                 </div>
-                <div class="fade-up" style="flex: 1;">
-                    <h2 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem;">Why Choose V Yes Global?</h2>
-                    <p style="margin-bottom: 2rem; color: #49655e;">We combine financial expertise with a human touch. Transparency and integrity drive us.</p>
-                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-                        <div style="display: flex; align-items: center; gap: 1rem;"><i class="fas fa-lock" style="font-size: 1.8rem; color: #4CAF50;"></i> <div><strong>Secure & Encrypted</strong><br>Bank-grade security protocols.</div></div>
-                        <div style="display: flex; align-items: center; gap: 1rem;"><i class="fas fa-bolt" style="font-size: 1.8rem; color: #4CAF50;"></i> <div><strong>Fast Processing</strong><br>Decisions in minutes, not days.</div></div>
-                        <div style="display: flex; align-items: center; gap: 1rem;"><i class="fas fa-headset" style="font-size: 1.8rem; color: #4CAF50;"></i> <div><strong>Dedicated Support</strong><br>Expert advisors 24/7.</div></div>
-                    </div>
+                <div class="contact-info address-footer">
+                    <h4>OFFICIAL ADDRESS</h4>
+                    <p><i class="fas fa-location-dot"></i> Chimmai Arcade, No: 3 #1, SRS Bus Stop, Abbigere Main Road, Kammagondananalli, Bangalore - 560015</p>
+                    <p><i class="fas fa-envelope"></i> hello@vyesglobal.com</p>
+                    <p><i class="fas fa-phone-alt"></i> +91 99891 88376</p>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer style="background: #fafcf9; border-top: 1px solid #e2efe2; margin-top: 4rem; padding: 3rem 2rem 2rem;">
-        <div class="container" style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2.5rem;">
-            <div style="flex: 1.2;">
-                <div style="font-size: 1.7rem; font-weight: 800;"><span style="color:#4CAF50;">V</span> Yes Global</div>
-                <p style="margin-top: 1rem; color: #586f6b; max-width: 280px;">Empowering your financial journey with trusted loans and insurance solutions. Building a secure future together.</p>
-            </div>
-            <div>
-                <h4 style="font-weight: 700; margin-bottom: 1rem;">Services</h4>
-                <ul style="list-style: none; line-height: 2;"><li>Personal Loans</li><li>Home Loans</li><li>Business Insurance</li><li>Life Insurance</li></ul>
-            </div>
-            <div>
-                <h4 style="font-weight: 700; margin-bottom: 1rem;">Company</h4>
-                <ul style="list-style: none; line-height: 2;"><li>About Us</li><li>Careers</li><li>Contact</li><li>Blog</li></ul>
-            </div>
-            <div>
-                <h4 style="font-weight: 700; margin-bottom: 1rem;">Legal</h4>
-                <ul style="list-style: none; line-height: 2;"><li>Privacy Policy</li><li>Terms of Service</li><li>Cookie Policy</li></ul>
+            <hr>
+            <div class="bottom-footer">
+                <span>© 2026 V Yes Global — Empowering visions, creating sustainable impact.</span>
+                <span><i class="fab fa-linkedin"></i> <i class="fab fa-twitter"></i> <i class="fab fa-instagram"></i></span>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #ddebe0; color: #70837e;">© 2025 V Yes Global — Secure your future today.</div>
     </footer>
 
     <script>
-        // Loan calculator logic
-        const loanAmountSlider = document.getElementById('loanAmount');
-        const loanTermSlider = document.getElementById('loanTerm');
-        const interestRateSlider = document.getElementById('interestRate');
-        const amountSpan = document.getElementById('amountVal');
-        const termSpan = document.getElementById('termVal');
-        const rateSpan = document.getElementById('rateVal');
-        const monthlySpan = document.getElementById('monthlyPayment');
-        const totalInterestSpan = document.getElementById('totalInterest');
-        const totalPaymentSpan = document.getElementById('totalPayment');
-
-        function updateCalculator() {
-            let P = parseFloat(loanAmountSlider.value);
-            let months = parseInt(loanTermSlider.value);
-            let annualRate = parseFloat(interestRateSlider.value);
-            amountSpan.innerText = P.toLocaleString();
-            termSpan.innerText = months;
-            rateSpan.innerText = annualRate;
-
-            let monthlyRate = annualRate / 100 / 12;
-            let numerator, monthlyPayment;
-            if (monthlyRate === 0) {
-                monthlyPayment = P / months;
-            } else {
-                numerator = monthlyRate * Math.pow(1 + monthlyRate, months);
-                let denominator = Math.pow(1 + monthlyRate, months) - 1;
-                monthlyPayment = P * (numerator / denominator);
+        (function() {
+            // Custom cursor elements
+            const cursor = document.querySelector('.cursor');
+            const cursorDot = document.querySelector('.cursor-dot');
+            
+            if(cursor && cursorDot) {
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                    cursorDot.style.left = e.clientX + 'px';
+                    cursorDot.style.top = e.clientY + 'px';
+                });
+                
+                const interactiveElements = document.querySelectorAll('a, button, .btn, .sector-card, .nav-link, .subscribe-input, .location, .footer-links a, .btn-sub, .card-icon');
+                const addActive = (el) => {
+                    el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+                    el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+                };
+                interactiveElements.forEach(addActive);
+                
+                document.addEventListener('mouseout', (e) => {
+                    if (e.relatedTarget === null) {
+                        cursor.style.opacity = '0';
+                        cursorDot.style.opacity = '0';
+                    }
+                });
+                document.addEventListener('mouseover', () => {
+                    cursor.style.opacity = '1';
+                    cursorDot.style.opacity = '1';
+                });
             }
-            if (isNaN(monthlyPayment) || !isFinite(monthlyPayment)) monthlyPayment = 0;
-            let totalPayment = monthlyPayment * months;
-            let totalInterest = totalPayment - P;
-            monthlySpan.innerText = '$' + monthlyPayment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            totalInterestSpan.innerText = '$' + totalInterest.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            totalPaymentSpan.innerText = '$' + totalPayment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
-
-        [loanAmountSlider, loanTermSlider, interestRateSlider].forEach(slider => {
-            slider.addEventListener('input', updateCalculator);
-        });
-        document.getElementById('calcBtn').addEventListener('click', () => {
-            alert('Proceed with loan application — our advisor will reach out shortly.');
-        });
-        updateCalculator();
-
-        // Scroll reveal (Intersection Observer)
-        const fadeElements = document.querySelectorAll('.fade-up');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                    observer.unobserve(entry.target);
-                }
+            
+            // nav link subtle transform
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() { this.style.transform = 'translateY(-2px)'; });
+                link.addEventListener('mouseleave', function() { this.style.transform = 'translateY(0)'; });
             });
-        }, { threshold: 0.12, rootMargin: "0px 0px -20px 0px" });
-        fadeElements.forEach(el => observer.observe(el));
-
-        // Custom glowing cursor (only on desktop / non-touch)
-        const cursor = document.getElementById('glowCursor');
-        if (window.matchMedia("(pointer: fine)").matches) {
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-            document.addEventListener('mouseleave', () => {
-                cursor.style.opacity = '0';
-            });
-            document.addEventListener('mouseenter', () => {
-                cursor.style.opacity = '1';
-            });
-        } else {
-            cursor.style.display = 'none';
-        }
-
-        // Smooth scrolling for anchor links (optional for 'How It Works' and other)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
+            
+            // subscribe alert with validation
+            const subscribeBtn = document.getElementById('subscribeBtn');
+            const emailField = document.getElementById('newsEmail');
+            if(subscribeBtn && emailField) {
+                subscribeBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                    const email = emailField.value.trim();
+                    const emailPattern = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+                    if(email === "") {
+                        alert("📩 Please enter your email address to receive strategic insights.");
+                    } else if (!emailPattern.test(email)) {
+                        alert("⚠️ Please provide a valid business email address.");
+                    } else {
+                        alert(`✨ Thank you for subscribing! ${email} will receive exclusive market reports and updates from V Yes Global.`);
+                        emailField.value = '';
+                    }
+                });
+            }
+            
+            // sector card and demo interactive messages with modern feedback
+            const cards = document.querySelectorAll('.sector-card');
+            cards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectorTitle = card.querySelector('h3')?.innerText || 'sector';
+                    alert(`🚀 V Yes Global: Explore our advanced ${sectorTitle} solutions. Our team will connect with tailored insights.`);
+                    if(cursor) cursor.classList.add('active');
+                    setTimeout(() => { if(cursor) cursor.classList.remove('active'); }, 300);
+                });
             });
-        });
-        // manual floating elements: add class to floating card already has .floating-card
-        // additional tiny floating effect on hero image can be subtle: done.
-        // Sticky header already applied.
-        // Small hover effect: button scale + shadow done via CSS.
+            
+            // strategic map button (primary)
+            const stratBtn = document.getElementById('strategicBtn');
+            if(stratBtn) {
+                stratBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert("🗺️ Global Footprint Map: Active operations in 12+ countries with regional HQ in India, Singapore, and UAE. Let's expand together.");
+                });
+            }
+            const exploreBtn = document.getElementById('exploreBtn');
+            if(exploreBtn) {
+                exploreBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert("💡 Discover our innovation pipeline — digital ecosystems, financial inclusion models, and sustainable furniture design.");
+                });
+            }
+            
+            // all dummy hash links prevent default but provide subtle interaction
+            const allDummyLinks = document.querySelectorAll('a[href="#"]');
+            allDummyLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if(link.classList.contains('sector-card')) return;
+                    if(cursor) cursor.classList.add('active');
+                    setTimeout(() => { if(cursor) cursor.classList.remove('active'); }, 150);
+                    // Optional gentle hint only if not main cta
+                    if(!link.closest('.sector-card') && !link.closest('.btn-primary') && !link.closest('.btn-outline')) {
+                        console.log("Navigation demo: V Yes Global experience");
+                    }
+                });
+            });
+            
+            // additional hover effects for reach locations
+            const locations = document.querySelectorAll('.location');
+            locations.forEach(loc => {
+                loc.addEventListener('click', () => {
+                    alert("📍 Our office hubs provide on-ground support for global partnerships. Reach out to our team!");
+                });
+            });
+            
+            // For email input cursor style
+            if(emailField) {
+                emailField.addEventListener('focus', () => cursor?.classList.add('active'));
+                emailField.addEventListener('blur', () => cursor?.classList.remove('active'));
+            }
+            
+            // social icons minor feedback
+            const socialIcons = document.querySelectorAll('.bottom-footer i');
+            socialIcons.forEach(icon => {
+                icon.addEventListener('click', () => {
+                    alert("🌐 Connect with V Yes Global on social channels — upcoming community and insights.");
+                });
+            });
+            
+            // extra animation finesse: ensure no layout shift
+            window.addEventListener('load', () => {
+                document.body.style.overflowX = 'hidden';
+            });
+        })();
     </script>
-    <style>
-        /* additional small tweak for card links and icons */
-        .card-hover a {
-            transition: all 0.2s;
-        }
-        .card-hover a:hover {
-            text-decoration: underline;
-            margin-left: 4px;
-        }
-        input[type="range"] {
-            background: #cfe9dc;
-        }
-        .gradient-stats div {
-            transition: transform 0.2s;
-        }
-        .gradient-stats div:hover {
-            transform: scale(1.02);
-        }
-        /* responsive */
-        @media (max-width: 700px) {
-            .hero-flex h1 {
-                font-size: 2.4rem;
-            }
-            .sticky-header nav {
-                gap: 1rem;
-                margin-top: 0.6rem;
-            }
-            .btn-primary, .btn-outline {
-                padding: 8px 18px;
-                font-size: 0.85rem;
-            }
-        }
-    </style>
 </body>
 </html>
