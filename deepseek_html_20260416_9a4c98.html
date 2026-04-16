@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V Yes Global · Empowering Visions</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafbfc;
+            color: #1a1e24;
+            line-height: 1.5;
+            overflow-x: hidden;
+            cursor: none; /* hide default cursor for custom effect */
+        }
+
+        /* CUSTOM CURSOR */
+        .cursor {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(10, 88, 202, 0.5);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease, width 0.2s, height 0.2s, background 0.2s;
+            transform: translate(-50%, -50%);
+            backdrop-filter: blur(2px);
+            mix-blend-mode: difference;
+        }
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: #0a58ca;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: transform 0.08s linear;
+        }
+        .cursor.active {
+            width: 56px;
+            height: 56px;
+            background: rgba(10, 88, 202, 0.15);
+            border-color: transparent;
+            backdrop-filter: blur(6px);
+        }
+
+        /* make links/buttons interactive */
+        a, button, .btn, .card-link, .nav-link, .sector-card, .subscribe-input {
+            cursor: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* HEADER & NAV */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.02em;
+            color: #0b1e33;
+        }
+        .logo i {
+            color: #0a58ca;
+            font-size: 2rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            font-weight: 500;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #0a58ca;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 64px 0 48px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 4.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            background: linear-gradient(145deg, #0b1e33 0%, #1a3a5c 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            max-width: 900px;
+            margin: 0 auto 20px;
+        }
+        .hero .subhead {
+            font-size: 1.3rem;
+            color: #4a5c6b;
+            max-width: 720px;
+            margin: 0 auto 32px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 48px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1.5px solid transparent;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transform: translateY(0);
+        }
+        .btn-primary {
+            background: #0a58ca;
+            color: white;
+            box-shadow: 0 12px 24px -8px rgba(10,88,202,0.25);
+        }
+        .btn-primary:hover {
+            background: #0847a8;
+            transform: translateY(-4px);
+            box-shadow: 0 24px 32px -12px rgba(10,88,202,0.35);
+        }
+        .btn-outline {
+            border-color: #cfdde9;
+            color: #1e2f40;
+        }
+        .btn-outline:hover {
+            border-color: #0a58ca;
+            background: #f0f7ff;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -10px rgba(0,0,0,0.1);
+        }
+
+        /* Sectors */
+        .sectors {
+            padding: 60px 0;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .section-sub {
+            color: #5e6f7e;
+            margin-bottom: 48px;
+            font-size: 1.2rem;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .sector-card {
+            background: white;
+            padding: 32px 28px;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -8px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            border: 1px solid #edf2f7;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transform: translateY(0);
+        }
+        .sector-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 45px -12px rgba(10,88,202,0.18);
+            border-color: #cbdff2;
+        }
+        .card-icon {
+            font-size: 2.8rem;
+            margin-bottom: 24px;
+            color: #0a58ca;
+        }
+        .sector-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .sector-card p {
+            color: #435十五;
+            margin-bottom: 24px;
+        }
+        .learn-more {
+            font-weight: 600;
+            color: #0a58ca;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.3s;
+        }
+        .sector-card:hover .learn-more {
+            gap: 14px;
+        }
+
+        /* Global reach */
+        .reach {
+            background: linear-gradient(105deg, #f2f7fd 0%, #ffffff 100%);
+            border-radius: 48px;
+            padding: 56px 48px;
+            margin: 40px 0;
+            border: 1px solid #e5ecf3;
+        }
+        .reach h2 {
+            font-size: 2.2rem;
+            margin-bottom: 24px;
+        }
+        .reach-grid {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .reach-info {
+            flex: 2;
+        }
+        .reach-desc {
+            font-size: 1.2rem;
+            margin-bottom: 32px;
+            color: #2e4357;
+        }
+        .hq-locations {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .location {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .location i {
+            font-size: 1.5rem;
+            color: #0a58ca;
+            margin-top: 4px;
+        }
+        .address {
+            font-weight: 500;
+        }
+        .address small {
+            display: block;
+            color: #657e97;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 48px 0 64px;
+            text-align: center;
+            border-bottom: 1px solid #e0e8ef;
+        }
+        .newsletter h3 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+        .subscribe-form {
+            display: flex;
+            max-width: 520px;
+            margin: 32px auto 0;
+            gap: 12px;
+        }
+        .subscribe-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid #d9e2ec;
+            border-radius: 60px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+            background: white;
+        }
+        .subscribe-input:focus {
+            border-color: #0a58ca;
+            box-shadow: 0 0 0 5px rgba(10,88,202,0.1);
+        }
+        .btn-sub {
+            background: #0b1e33;
+            color: white;
+            border: none;
+            padding: 0 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn-sub:hover {
+            background: #0a58ca;
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 48px 0 32px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+        }
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .company-desc {
+            color: #546e7a;
+            margin-bottom: 24px;
+        }
+        .footer-links h4 {
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+        .footer-links ul {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            text-decoration: none;
+            color: #3e5669;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover {
+            color: #0a58ca;
+        }
+        .address-footer i {
+            width: 20px;
+            color: #0a58ca;
+            margin-right: 8px;
+        }
+        .contact-info p {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        hr {
+            margin: 40px 0 20px;
+            border: 0;
+            height: 1px;
+            background: #d0dce6;
+        }
+
+        /* animations & reveal */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeUp 0.8s forwards;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.25s; }
+        .delay-3 { animation-delay: 0.4s; }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* responsive */
+        @media (max-width: 900px) {
+            .card-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .hero h1 { font-size: 3rem; }
+        }
+        @media (max-width: 600px) {
+            .navbar { flex-direction: column; gap: 20px; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom animated cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar fade-up">
+            <div class="logo">
+                <i class="fas fa-globe"></i> 
+                <span>V Yes Global</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Loans & Finance</a>
+                <a href="#" class="nav-link">Digital</a>
+                <a href="#" class="nav-link">Furniture</a>
+                <a href="#" class="nav-link">About</a>
+                <a href="#" class="nav-link">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <header class="hero fade-up delay-1">
+            <h1>Empowering Global Visions</h1>
+            <p class="subhead">Leading the way in Finance, Digital Innovation, and Manufacturing. We bridge the gap between opportunity and execution across borders.</p>
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary"><i class="fas fa-map"></i> View Strategic Map</a>
+                <a href="#" class="btn btn-outline"><i class="fas fa-compass"></i> Explore Our Site</a>
+            </div>
+        </header>
+
+        <!-- Strategic Sectors -->
+        <section class="sectors fade-up delay-2">
+            <h2 class="section-title">Our Strategic Sectors</h2>
+            <p class="section-sub">Diversified excellence across key industries driving the global economy forward.</p>
+            <div class="card-grid">
+                <!-- Card 1 -->
+                <a href="#" class="sector-card">
+                    <div class="card-icon"><i class="fas fa-building-columns"></i></div>
+                    <h3>Loans & Insurance</h3>
+                    <p>Comprehensive financial solutions tailored for corporate growth and individual security. We provide stable foundations for ambitious futures.</p>
+                    <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <!-- Card 2 -->
+                <a href="#" class="sector-card">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Branding & Digital</h3>
+                    <p>Innovative digital strategies that elevate brands in the connected landscape. From identity creation to full-scale digital transformation.</p>
+                    <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <!-- Card 3 -->
+                <a href="#" class="sector-card">
+                    <div class="card-icon"><i class="fas fa-couch"></i></div>
+                    <h3>Furniture & Products</h3>
+                    <p>Exquisite craftsmanship meeting modern ergonomic design. We manufacture and distribute premium furniture for offices and homes.</p>
+                    <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Global Reach -->
+        <section class="reach fade-up delay-3">
+            <h2>🌍 GLOBAL REACH</h2>
+            <p class="reach-desc">Connecting Continents, Creating Value.</p>
+            <div class="reach-grid">
+                <div class="reach-info">
+                    <p style="font-size: 1.2rem; margin-bottom: 28px;">Our network spans across major economic hubs, ensuring we are always close to the pulse of the market. From Asia to the Americas, V Yes Global is your local partner with international expertise.</p>
+                    <div class="hq-locations">
+                        <div class="location">
+                            <i class="fas fa-building"></i>
+                            <div class="address">
+                                Headquarters<br>
+                                <small>Kammagondananalli, Bangalore - 560015</small>
+                            </div>
+                        </div>
+                        <div class="location">
+                            <i class="fas fa-network-wired"></i>
+                            <div class="address">
+                                Regional Hubs<br>
+                                <small>Jalahalli, Bangalore (KA)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter / Subscribe -->
+        <section class="newsletter">
+            <h3>Ready to Expand Your Vision?</h3>
+            <p style="color: #3b5b79;">Join our network of innovators and market leaders. Subscribe to our strategic insights.</p>
+            <div class="subscribe-form">
+                <input type="email" placeholder="Enter your business email" class="subscribe-input">
+                <button class="btn btn-sub"><i class="fas fa-paper-plane"></i> Subscribe</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <i class="fas fa-globe" style="color: #0a58ca;"></i> V Yes Global
+                    </div>
+                    <p class="company-desc">A diversified global holding company committed to sustainable growth and innovation across multiple sectors.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>COMPANY</h4>
+                    <ul>
+                        <li><a href="#">LOANS & FINANCE</a></li>
+                        <li><a href="#">Digital Marketing</a></li>
+                        <li><a href="#">Furniture Manufacturing</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>LEGAL</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Cookie Settings</a></li>
+                    </ul>
+                </div>
+                <div class="contact-info address-footer">
+                    <h4>ADDRESS</h4>
+                    <p><i class="fas fa-map-pin"></i> Chimmai Arcade, No: 3 #1, SRS Bus Stop,<br> Abbigere Main Road, Kammagondananalli, Bangalore - 560015</p>
+                    <p><i class="fas fa-envelope"></i> info@yesglobal.com</p>
+                    <p><i class="fas fa-phone"></i> 9989188376</p>
+                </div>
+            </div>
+            <hr>
+            <div style="display: flex; justify-content: space-between; color: #607d8b;">
+                <span>© 2026 V Yes Global. Empowering visions worldwide.</span>
+                <span><i class="fab fa-linkedin"></i>   <i class="fab fa-x-twitter"></i></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cursor animation + interactive effects -->
+    <script>
+        (function(){
+            const cursor = document.querySelector('.cursor');
+            const cursorDot = document.querySelector('.cursor-dot');
+
+            // move custom cursor
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            });
+
+            // hover effect on interactive elements
+            const interactiveSelectors = 'a, button, .btn, .sector-card, .nav-link, .subscribe-input, .location, .footer-links a';
+            const interactives = document.querySelectorAll(interactiveSelectors);
+
+            interactives.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('active');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('active');
+                });
+            });
+
+            // additional magnetic-like scaling on buttons (just for fun)
+            const buttons = document.querySelectorAll('.btn, .btn-sub, .sector-card');
+            buttons.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    // subtle scale inside, but cursor already handles
+                });
+            });
+
+            // hide cursor when leaving window
+            document.addEventListener('mouseout', (e) => {
+                if (e.relatedTarget === null) {
+                    cursor.style.opacity = '0';
+                    cursorDot.style.opacity = '0';
+                }
+            });
+            document.addEventListener('mouseover', () => {
+                cursor.style.opacity = '1';
+                cursorDot.style.opacity = '1';
+            });
+
+            // smooth reveal already applied by CSS classes.
+            // add subtle hover animation for nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                });
+                link.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Subscribe button alert demo (realistic)
+            const subBtn = document.querySelector('.btn-sub');
+            const emailInput = document.querySelector('.subscribe-input');
+            subBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if(emailInput.value.trim() !== '') {
+                    alert(`✨ Thank you for subscribing with ${emailInput.value} — strategic insights coming your way.`);
+                    emailInput.value = '';
+                } else {
+                    alert('📧 Please enter your business email.');
+                }
+            });
+
+            // For all 'Learn More' and other dummy links prevent actual navigation
+            document.querySelectorAll('a[href="#"]').forEach(anchor => {
+                anchor.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // small haptic feedback
+                    cursor.classList.add('active');
+                    setTimeout(() => cursor.classList.remove('active'), 150);
+                });
+            });
+
+            // animation for view strategic map etc.
+            const primaryBtn = document.querySelector('.btn-primary');
+            if(primaryBtn) {
+                primaryBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('🗺️ Strategic map: global footprint visualisation (interactive demo).');
+                });
+            }
+
+            // cursor active on input focus
+            emailInput.addEventListener('focus', () => cursor.classList.add('active'));
+            emailInput.addEventListener('blur', () => cursor.classList.remove('active'));
+
+            // also on hover address fields
+            document.querySelectorAll('.address-footer p, .location').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+            });
+        })();
+    </script>
+    <!-- ensure fade-up visible if script loads slow -->
+    <style>
+        .fade-up { opacity: 0; } /* will be animated */
+    </style>
+</body>
+</html>
